@@ -14,10 +14,12 @@ export const CollectionForm = () => {
         user: 0
     })
 
+    // get the current user object
     useEffect(() => {
         getCurrentUser().then(setCurrentUser)
     }, [])
-    console.log(currentUser.id)
+
+    // the collection object we will send to the api
     const submitNewCollection = (evt) => {
         evt.preventDefault()
         const date = new Date()
@@ -26,17 +28,9 @@ export const CollectionForm = () => {
             date: date.toISOString().split('T')[0],
             user: parseInt(currentUser.id)
         }
+        //this is being imported from the collections manager
         createCollection(newCollection).then(() => {history.push('/collections')})
     }
-
-    // const submitNewCollection = (evt) => {
-    //     evt.preventDefault()
-    //     createCollection(collection)
-    //         .then(() => {
-    //             history.push('/collections')
-    //         })
-    // }
-
 
     return <>
         <h1>New Collection Form</h1>
