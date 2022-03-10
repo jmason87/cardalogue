@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { Collection, CollectionList } from "./collections/CollectionList"
+import { CollectionList } from "./collections/CollectionList"
+import { CollectionForm } from "./collections/CollectionForm"
 
 export const ApplicationViews = () => {
     return (
@@ -8,6 +9,10 @@ export const ApplicationViews = () => {
             <Route path="/collections">
                 <CollectionList />
             </Route>
+            <Route path="/collectionform">
+                <CollectionForm />
+            </Route>
+
         </>
     )
 }
