@@ -7,6 +7,15 @@ export const getCollections = () => {
     .then(res => res.json())
 }
 
+export const getSingleCollection = (id) => {
+    return fetch(`http://localhost:8000/collections/${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+    .then(res => res.json())
+}
+
 export const createCollection = (newCollection) => {
     
     const fetchOptions = {

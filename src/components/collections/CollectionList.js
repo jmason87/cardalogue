@@ -19,7 +19,7 @@ export const CollectionList = () => {
                     return <>
                         <h1 key={`c--${c.id}`}>{c.name}</h1>
                         <div>
-                            <Link to={'/collectiondetail'}>View</Link>
+                            <Link to={`/collections/${c.id}`}>View</Link>
                             <button>Delete</button>
                         </div>
                     </>

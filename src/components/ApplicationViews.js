@@ -8,13 +8,13 @@ import { CollectionDetail } from "./collections/CollectionDetail"
 export const ApplicationViews = () => {
     return (
         <>
-            <Route path="/collections">
+            <Route exact path="/collections">
                 <CollectionList />
             </Route>
-            <Route path="/collectionform">
+            <Route exact path="/collectionform">
                 <CollectionForm />
             </Route>
-            <Route path="/collectiondetail">
+            <Route exact path="/collections/:collectionId(\d+)">
                 <CollectionDetail />
             </Route>
 
