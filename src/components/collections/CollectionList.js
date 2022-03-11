@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getCollections } from "./CollectionManager"
+import { getCollections, deleteCollection } from "./CollectionManager"
 import { useHistory, Link } from "react-router-dom"
 
 
@@ -20,7 +20,7 @@ export const CollectionList = () => {
                         <h1 key={`c--${c.id}`}>{c.name}</h1>
                         <div>
                             <Link to={`/collections/${c.id}`}>View</Link>
-                            <button>Delete</button>
+                            <button onClick={() => {deleteCollection(c.id).then(setCollections)}}>Delete</button>
                         </div>
                     </>
                 })

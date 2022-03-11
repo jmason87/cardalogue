@@ -30,3 +30,12 @@ export const createCollection = (newCollection) => {
         .then(getCollections)
 
 }
+
+export const deleteCollection = (id) => {
+    return fetch (`http://localhost:8000/collections/${id}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    }).then(getCollections)
+};
