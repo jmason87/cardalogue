@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { getCollections } from "./CollectionManager"
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
 
 export const CollectionList = () => {
@@ -19,7 +19,7 @@ export const CollectionList = () => {
                     return <>
                         <h1 key={`c--${c.id}`}>{c.name}</h1>
                         <div>
-                            <button>View</button>
+                            <Link to={`/collections/${c.id}`}>View</Link>
                             <button>Delete</button>
                         </div>
                     </>
