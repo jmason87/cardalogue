@@ -42,7 +42,7 @@ export const CollectionDetail = () => {
             }
         </div>
         <div>
-            <button>ViewCommetns</button>
+            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
         </div>
     </>
 }

@@ -7,6 +7,8 @@ import { SetList } from "./sets/SetList"
 import { SetDetail } from "./sets/SetDetail"
 import { CardForm } from "./cards/CardForm"
 import { CardDetail } from "./cards/CardDetail"
+import { CommentList } from "./comments/CommentList"
+import { CommentForm } from "./comments/CommentForm"
 
 
 export const ApplicationViews = () => {
@@ -32,6 +34,12 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/carddetail/:cardId(\d+)">
                 <CardDetail />
+            </Route>
+            <Route exact path="/comments/:collectionId(\d+)">
+                <CommentList />
+            </Route>
+            <Route exact path="/commentform/:collectionId(\d+)">
+                <CommentForm />
             </Route>
 
         </>
