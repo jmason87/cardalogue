@@ -30,3 +30,17 @@ export const createCard = (newCard) => {
         .then(getCards)
 
 }
+
+export const createCardCollection = (newCard) => {
+    
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "content-Type": "application/json"
+        },
+        body: JSON.stringify(newCard)
+    }
+    return fetch(`http://localhost:8000/cardcollections`, fetchOptions)
+
+}

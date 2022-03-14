@@ -6,6 +6,7 @@ import { CollectionDetail } from "./collections/CollectionDetail"
 import { SetList } from "./sets/SetList"
 import { SetDetail } from "./sets/SetDetail"
 import { CardForm } from "./cards/CardForm"
+import { CardDetail } from "./cards/CardDetail"
 
 
 export const ApplicationViews = () => {
@@ -28,6 +29,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/cardform/:setId(\d+)">
                 <CardForm />
+            </Route>
+            <Route exact path="/carddetail/:cardId(\d+)">
+                <CardDetail />
             </Route>
 
         </>

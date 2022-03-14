@@ -35,40 +35,13 @@ export const SetDetail = () => {
 
     return ( <> 
         <h1>Set Details</h1>
-        <button onClick={()=>{history.push(`/cardform/${set.id}`)}}>Add Card To Set</button>
+        {/* <button onClick={()=>{history.push(`/cardform/${set.id}`)}}>Add Card To Set</button> */}
         {
             cards.map((card) => {
-                if (card.set.id == parsedId) {
-                    return <>
-                    <p>{card.first_name} {card.last_name}</p>
-                    <p>Card No. {card.card_number}</p>
-                    <p>Attributes:  
-                    {
-                        card.tag.map((tag) => {
-                            return <>
-                            <span> {tag.label} </span> 
-                            </>
-                        })
-                    }
-                    </p>
-                    <img src={`http://localhost:8000${card.image}`} className="image is-128x128 mr-3"></img>
-                    <div>
-
-                    <select onChange={() => {
-                        
-                    }
-                }>
-                    <option>Choose Collection</option>
-                    {
-                        collection.map((c) => {
-                            return <option value={c.id}>{c.name}</option>
-                        })
-                    }
-                    </select>
-                    <button>Add</button>
-                    <button onClick={() => {deleteCard(card.id).then(setCards)}}>Delete Card</button>
-                    </div>
-                    </>
+                if (card.set.id === parsedId) {
+                    return <ul>
+                        <li>#{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link></li>
+                    </ul>
                 }
             })
         }

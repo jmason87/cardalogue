@@ -39,3 +39,15 @@ export const deleteCollection = (id) => {
         }
     }).then(getCollections)
 };
+
+export const updateCollection = (collection, id) => {
+    return fetch(`http://localhost:8000/collections/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        },
+        body: JSON.stringify(collection)
+    })
+        .then(getCollections)
+}

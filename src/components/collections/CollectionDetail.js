@@ -8,6 +8,7 @@ export const CollectionDetail = () => {
     const [collection, setCollection] = useState({})
     const { collectionId } = useParams()
     const parsedId = parseInt(collectionId)
+    const history = useHistory()
     
     useEffect(() => {
         getSingleCollection(parsedId).then(setCollection)
@@ -16,14 +17,13 @@ export const CollectionDetail = () => {
     return <>
         <h1>Collection Detail</h1>
         <div>
-            <button>Add Cards</button>
+            <button onClick={() => {history.push('/sets')}}>Add Cards</button>
         </div>
         <div>
             {   // mapping over the card array in the collection object
                 collection.card?.map((card) => {
                     return <>
-                    <img key={`card--${card.id}`} src={card.image} />
-                    <p>{card.first_name} {card.last_name}</p>
+                    <img src={`http://localhost:8000${card.image}`} className="image is-128x128 mr-3"></img>                    <p>{card.first_name} {card.last_name}</p>
                     <p>Card #{card.card_number}</p>
                     <p>Category: {card.card_category.label}</p>
                     <p>Set: {card.set?.name}</p>
@@ -34,6 +34,9 @@ export const CollectionDetail = () => {
                         })
                     }
                     </ul>
+                    <div>
+                    <button>Remove Card</button>
+                    </div>
                     </>
                 })
             }
