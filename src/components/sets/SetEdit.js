@@ -10,15 +10,13 @@ export const SetEdit = () => {
         manufacturer: "",
         year: ""
     })
-    // const [ name, setName ] = useState("")
-    // const [ manufacturer, setManufacturer ] = useState("")
-    // const [ year, setYear ] = useState("")
-
-
+    
     const { setId } = useParams()
     const parsedId = setId
     const history = useHistory()
 
+    // this is fetching the current set and setting the values of the keys in the above
+    // state variable to values of the current set
     useEffect(() => {
         getSingleSet(parsedId).then((newSet) => {
             setSingleSet({
