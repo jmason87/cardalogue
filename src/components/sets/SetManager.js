@@ -26,3 +26,28 @@ export const deleteCard = (id) => {
         }
     }).then(getCards)
 };
+
+export const createSet = (newSet) => {
+    
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "content-Type": "application/json"
+        },
+        body: JSON.stringify(newSet)
+    }
+    return fetch(`http://localhost:8000/sets`, fetchOptions)
+
+}
+
+export const updateSet = (set, id) => {
+    return fetch(`http://localhost:8000/sets/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        },
+        body: JSON.stringify(set)
+    })
+}
