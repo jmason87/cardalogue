@@ -28,6 +28,7 @@ export const CommentList = () => {
                             <li>Posted by: {comment.posted_by?.username}</li>
                         </ul>
                         <button onClick={() => {deleteCollectionComments(comment.id).then(setComments)}}>Delete Comment</button>
+                        <button onClick={() => {history.push(`/editcomment/${comment.id}`)}}>Edit Comment</button>
                     </>
                 })
             }

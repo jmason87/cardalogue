@@ -9,6 +9,7 @@ import { CardForm } from "./cards/CardForm"
 import { CardDetail } from "./cards/CardDetail"
 import { CommentList } from "./comments/CommentList"
 import { CommentForm } from "./comments/CommentForm"
+import { CommentEdit } from "./comments/CommentEdit"
 
 
 export const ApplicationViews = () => {
@@ -40,6 +41,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/commentform/:collectionId(\d+)">
                 <CommentForm />
+            </Route>
+            <Route exact path="/editcomment/:commentId(\d+)">
+                <CommentEdit />
             </Route>
 
         </>
