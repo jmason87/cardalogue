@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { getCurrentUser } from "../users/UserManager"
 import { deleteCollectionComments, getCollectionComments } from "./CommentManager"
 
 
 export const CommentList = () => {
     const [comments, setComments] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
 
     const { collectionId } = useParams()
     const parsedId = collectionId
@@ -13,6 +15,10 @@ export const CommentList = () => {
 
     useEffect(() => {
         getCollectionComments().then(setComments)
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser().then(setCurrentUser)
     }, [])
 
     return (
@@ -27,8 +33,18 @@ export const CommentList = () => {
                             <li>Posted on: {comment.date}</li>
                             <li>Posted by: {comment.posted_by?.username}</li>
                         </ul>
-                        <button onClick={() => {deleteCollectionComments(comment.id).then(setComments)}}>Delete Comment</button>
-                        <button onClick={() => {history.push(`/editcomment/${comment.id}`)}}>Edit Comment</button>
+                        
+                        {   //only admins and creators of the comment can delete that comment
+                            currentUser.is_staff || currentUser.id === comment.posted_by?.id
+                                ? <button onClick={() => {deleteCollectionComments(comment.id).then(setComments)}}>Delete Comment</button>
+                                : ""
+                                
+                        }
+                        {   // on users who created comment can edit comment
+                            currentUser.id === comment.posted_by?.id
+                                ? <button onClick={() => {history.push(`/editcomment/${comment.id}`)}}>Edit Comment</button>
+                                : ""
+                        }
                     </>
                 })
             }
