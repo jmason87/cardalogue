@@ -3,6 +3,7 @@ import { useHistory, Link, useParams } from "react-router-dom"
 import { getCollections, getSingleCollection } from "../collections/CollectionManager"
 import { getSingleCard } from "./CardManager"
 import { createCardCollection, getCardCollections } from "../cardcollection/CardCollectionManager"
+import { getCurrentUser } from "../users/UserManager"
 
 
 
@@ -12,6 +13,7 @@ export const CardDetail = () => {
     const [collectionId, setCollectionId] = useState(0)
     const [collection, setCollection] = useState({})
     const [cardCollections, setCardCollections] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
 
     const { cardId } = useParams()
     const parsedId = parseInt(cardId)
@@ -35,6 +37,10 @@ export const CardDetail = () => {
     // gets everything in the cardcollections table
     useEffect(() => {
         getCardCollections().then(setCardCollections)
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser().then(setCurrentUser)
     }, [])
 
     // checks to see if the card selected is already in the card array of that collection
@@ -84,11 +90,20 @@ export const CardDetail = () => {
                         <option>Choose Collection</option>
                         {
                             collections.map((c) => {
-                                return <option value={c.id}>{c.name}</option>
+                                return <>
+                                {
+                                    currentUser.id === c.user?.id    
+                                        ? <option value={c.id}>{c.name}</option>
+                                        : ""
+                                }
+                                </>
                             })
                         }
                     </select>
                     <button onClick={addCardToCollection}>Add</button>
+                </div>
+                <div>
+                    <button onClick={() => {history.push(`/sets/${card.set?.id}`)}}>Back to Cards</button>
                 </div>
 
             </section>
