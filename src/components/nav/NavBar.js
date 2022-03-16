@@ -34,6 +34,11 @@ export const NavBar = (props) => {
                     ? <li><Link to="/tags">Tag Management</Link></li>
                     : ""
             }
+                        {
+                currentUser.is_staff
+                    ? <li><Link to="/users">User Management</Link></li>
+                    : ""
+            }
             {/* logout link */}
             {
                 (localStorage.getItem("lu_token") !== null) ?

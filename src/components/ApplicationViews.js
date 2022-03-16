@@ -16,6 +16,8 @@ import { CardApproval } from "./cardapproval/CardApprovalList"
 import { TagList } from "./tags/TagList"
 import { TagForm } from "./tags/TagForm"
 import { TagEdit } from "./tags/TagEdit"
+import { UserList } from "./users/UserList"
+import { UserDetail } from "./users/UserDetail"
 
 
 export const ApplicationViews = () => {
@@ -68,6 +70,12 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/tagedit/:tagId(\d+)">
                 <TagEdit />
+            </Route>
+            <Route exact path="/users">
+                <UserList />
+            </Route>
+            <Route exact path="/user/:userId(\d+)">
+                <UserDetail />
             </Route>
 
         </>
