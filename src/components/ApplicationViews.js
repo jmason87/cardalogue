@@ -12,6 +12,7 @@ import { CommentForm } from "./comments/CommentForm"
 import { CommentEdit } from "./comments/CommentEdit"
 import { SetForm } from "./sets/SetForm"
 import { SetEdit } from "./sets/SetEdit"
+import { CardApproval } from "./cardapproval/CardApprovalList"
 
 
 export const ApplicationViews = () => {
@@ -52,6 +53,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/setedit/:setId(\d+)">
                 <SetEdit />
+            </Route>
+            <Route exact path="/approval">
+                <CardApproval />
             </Route>
 
         </>
