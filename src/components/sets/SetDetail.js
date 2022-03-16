@@ -36,6 +36,7 @@ export const SetDetail = () => {
     return (<>
         <h1>Set Details</h1>
         <button onClick={() => { history.push(`/cardform/${set.id}`) }}>Add Card To Set</button>
+        <button onClick={() => {history.push("/sets")}}>Back to Sets</button>
         {
             cards.map((card) => {
                 if (card.set.id === parsedId) {
