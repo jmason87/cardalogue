@@ -44,3 +44,13 @@ export const createCardCollection = (newCard) => {
     return fetch(`http://localhost:8000/cardcollections`, fetchOptions)
 
 }
+
+export const approveCard = (cardId) => {
+    return fetch(`http://localhost:8000/cards/${cardId}/approve`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    }).then(getCards)
+}
