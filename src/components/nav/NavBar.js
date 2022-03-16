@@ -29,6 +29,11 @@ export const NavBar = (props) => {
                     ? <li><Link to="/approval">Cards For Approval</Link></li>
                     : ""
             }
+            {
+                currentUser.is_staff
+                    ? <li><Link to="/tags">Tag Management</Link></li>
+                    : ""
+            }
             {/* logout link */}
             {
                 (localStorage.getItem("lu_token") !== null) ?
@@ -38,7 +43,7 @@ export const NavBar = (props) => {
                                 localStorage.removeItem("lu_token")
                                 history.push({ pathname: "/" })
                             }}
-                        >Logout</button>
+                        >Logout {currentUser.username}</button>
                     </li> :
                     <>
                         <li className="nav-item">

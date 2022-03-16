@@ -13,6 +13,9 @@ import { CommentEdit } from "./comments/CommentEdit"
 import { SetForm } from "./sets/SetForm"
 import { SetEdit } from "./sets/SetEdit"
 import { CardApproval } from "./cardapproval/CardApprovalList"
+import { TagList } from "./tags/TagList"
+import { TagForm } from "./tags/TagForm"
+import { TagEdit } from "./tags/TagEdit"
 
 
 export const ApplicationViews = () => {
@@ -56,6 +59,15 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/approval">
                 <CardApproval />
+            </Route>
+            <Route exact path="/tags">
+                <TagList />
+            </Route>
+            <Route exact path="/tagform">
+                <TagForm />
+            </Route>
+            <Route exact path="/tagedit/:tagId(\d+)">
+                <TagEdit />
             </Route>
 
         </>
