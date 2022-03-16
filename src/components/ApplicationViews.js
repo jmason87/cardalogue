@@ -19,6 +19,9 @@ import { TagEdit } from "./tags/TagEdit"
 import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { AllCollections } from "./collections/AllCollections"
+import { CategoryList } from "./categories/CategoryList"
+import { CategoryForm } from "./categories/CategoryForm"
+import { CategoryEdit } from "./categories/CategoryEdit"
 
 
 export const ApplicationViews = () => {
@@ -80,6 +83,15 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/user/:userId(\d+)">
                 <UserDetail />
+            </Route>
+            <Route exact path="/categories">
+                <CategoryList />
+            </Route>
+            <Route exact path="/categoryform">
+                <CategoryForm />
+            </Route>
+            <Route exact path="/catedit/:catId(\d+)">
+                <CategoryEdit />
             </Route>
 
         </>
