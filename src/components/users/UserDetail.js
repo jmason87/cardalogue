@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-import { getUser, getUsers } from "./UserManager"
+import { getUser, getUsers, makeAdmin, makeCollector } from "./UserManager"
 
 export const UserDetail = () => {
     const [user, setUser] = useState({})
@@ -11,7 +11,9 @@ export const UserDetail = () => {
     
     useEffect(() => {
         getUser(parsedId).then(setUser)
-    }, [])
+    }, [user.is_staff])
+
+
 
     return (
         <>
@@ -29,6 +31,11 @@ export const UserDetail = () => {
                     }
                 </li>
             </ul>
+            {
+                user.is_staff
+                    ? <button onClick={() => {makeCollector(user.id).then(setUser)}}>Make Collector</button>
+                    : <button onClick={() => {makeAdmin(user.id).then(setUser)}}>Make an Admin</button>
+            }
         </>
     )
 }
