@@ -21,6 +21,9 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/collections">My Collections</Link>
             </li>
             <li className="navbar__item active">
+                <Link className="navbar__link" to="/allcollections">All Collections</Link>
+            </li>
+            <li className="navbar__item active">
                 <Link className="navbar__link" to="/sets">Sets</Link>
             </li>
             {/* links for only admins */}
