@@ -18,6 +18,7 @@ import { TagForm } from "./tags/TagForm"
 import { TagEdit } from "./tags/TagEdit"
 import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
+import { AllCollections } from "./collections/AllCollections"
 
 
 export const ApplicationViews = () => {
@@ -31,6 +32,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/collections/:collectionId(\d+)">
                 <CollectionDetail />
+            </Route>
+            <Route exact path="/allcollections">
+                <AllCollections />
             </Route>
             <Route exact path="/sets">
                 <SetList />
