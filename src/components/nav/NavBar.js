@@ -37,7 +37,12 @@ export const NavBar = (props) => {
                     ? <li><Link to="/tags">Tag Management</Link></li>
                     : ""
             }
-                        {
+            {
+                currentUser.is_staff
+                    ? <li><Link to="/categories">Category Management</Link></li>
+                    : ""
+            }
+            {
                 currentUser.is_staff
                     ? <li><Link to="/users">User Management</Link></li>
                     : ""
