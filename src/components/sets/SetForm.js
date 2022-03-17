@@ -58,6 +58,7 @@ export const SetForm = () => {
                 </div>
                 <div>
                     <button onClick={createNewSet}>Save Set</button>
+                    <button onClick={() => {history.push('/sets')}}>Cancel</button>
                 </div>
             </form>
         </>

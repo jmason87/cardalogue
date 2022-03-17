@@ -32,6 +32,8 @@ export const CategoryForm = () => {
             </div>
         </form>
         <button onClick={createNewCategory}>Create Tag</button>
+        <button onClick={() => {history.push('/categories')}}>Cancel</button>
+
         </>
     )
 }

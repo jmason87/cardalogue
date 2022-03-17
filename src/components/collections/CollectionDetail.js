@@ -25,7 +25,7 @@ export const CollectionDetail = () => {
 
     useEffect(() => {
         getCurrentUser().then(setCurrentUser)
-    })
+    }, [])
 
     // this function is looking to see if the card and collection in any cardcollection object exactly matches the card and collection
     // that we are looking at in the dom. We get the cardId parameter from the collection.card map below. If there is a match, the 
@@ -42,6 +42,10 @@ export const CollectionDetail = () => {
     return <>
         <h1>{collection.name}</h1>
         <h3>Owner: {collection.user?.username}</h3>
+        <div>
+            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
+            <button onClick={() => {history.push('/allcollections')}}>Back to All Collections</button>
+        </div>
         <div>
             {
                 currentUser.id === collection.user?.id
@@ -76,9 +80,6 @@ export const CollectionDetail = () => {
                     </>
                 })
             }
-        </div>
-        <div>
-            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
         </div>
     </>
 }

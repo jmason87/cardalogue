@@ -20,10 +20,10 @@ export const TagList = () => {
                 tags.map((tag) => {
                     return <>
                         <ul>
-                            <li>
+                            <li key={`${tag.id}`}>
                                 {tag.label} 
-                                <button onClick={() => {history.push(`/tagedit/${tag.id}`)}}>Edit</button>
-                                <button onClick={() => {deleteTag(tag.id).then(setTags)}}>Delete</button>
+                                <button key="1" onClick={() => {history.push(`/tagedit/${tag.id}`)}}>Edit</button>
+                                <button key="2" onClick={() => {deleteTag(tag.id).then(setTags)}}>Delete</button>
                             </li>
                         </ul>
                     </>

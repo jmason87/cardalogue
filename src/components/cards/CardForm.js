@@ -145,6 +145,7 @@ export const CardForm = () => {
                 </div>
                 <div>
                     <button onClick={submitCardForApproval}>Submit Card</button>
+                    <button onClick={() => {history.push(`/sets/${setId}`)}}>Back</button>
                 </div>
             </section>
         </form>

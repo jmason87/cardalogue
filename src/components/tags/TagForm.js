@@ -32,6 +32,8 @@ export const TagForm = () => {
             </div>
         </form>
         <button onClick={createNewTag}>Create Tag</button>
+        <button onClick={() => {history.push('/tags')}}>Cancel</button>
+
         </>
     )
 }
