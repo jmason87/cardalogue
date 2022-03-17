@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 import { deleteCardCollection, getCardCollections } from "../cardcollection/CardCollectionManager"
+import { getCurrentUser } from "../users/UserManager"
 import { getSingleCollection } from "./CollectionManager"
 
 
 export const CollectionDetail = () => {
     const [collection, setCollection] = useState({})
     const [cardsInCollection, setCardsInCollection] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
     const { collectionId } = useParams()
     const parsedId = parseInt(collectionId)
     const history = useHistory()
@@ -19,6 +21,10 @@ export const CollectionDetail = () => {
 
     useEffect(() => {
         getCardCollections().then(setCardsInCollection)
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser().then(setCurrentUser)
     }, [])
 
     // this function is looking to see if the card and collection in any cardcollection object exactly matches the card and collection
@@ -34,9 +40,18 @@ export const CollectionDetail = () => {
     }
 
     return <>
-        <h1>Collection Detail</h1>
+        <h1>{collection.name}</h1>
+        <h3>Owner: {collection.user?.username}</h3>
         <div>
-            <button onClick={() => {history.push('/sets')}}>Add Cards</button>
+            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
+            <button onClick={() => {history.push('/allcollections')}}>Back to All Collections</button>
+        </div>
+        <div>
+            {
+                currentUser.id === collection.user?.id
+                    ? <button onClick={() => {history.push('/sets')}}>Add Cards</button>
+                    : ""
+            }
         </div>
         <div>
             {   // mapping over the card array in the collection object
@@ -54,17 +69,17 @@ export const CollectionDetail = () => {
                     }
                     </ul>
                     <div>
-                    <button 
-                    value={card.id}
-                    //we invoke the function onClick and pass in the card.id as the argument for cardId parameter we set above  
-                    onClick={() => {foundCardToRemove(card.id)}}>Remove Card</button>
+                    {
+                        currentUser.id === collection.user?.id
+                            ? <button 
+                              //we invoke the function onClick and pass in the card.id as the argument for cardId parameter we set above  
+                              onClick={() => {foundCardToRemove(card.id)}}>Remove Card</button>
+                            : ""
+                    }    
                     </div>
                     </>
                 })
             }
-        </div>
-        <div>
-            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
         </div>
     </>
 }

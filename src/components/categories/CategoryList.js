@@ -15,7 +15,7 @@ export const CategoryList = () => {
     return (
         <>
             <h1>Category List</h1>
-            <button onClick={() => {history.push("/categoryform")}}>Add a Tag</button>
+            <button onClick={() => {history.push("/categoryform")}}>Add a Category</button>
             {
                 categories.map((cat) => {
                     return <>

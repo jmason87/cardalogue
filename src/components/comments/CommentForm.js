@@ -34,11 +34,12 @@ export const CommentForm = () => {
         createCollectionComments(newComment).then(history.push(`/comments/${parsedId}`))
     }
 
-    console.log(currentUser)
-
     return (
         <>
             <h1>Comment Form</h1>
+            <div>
+            <button onClick={() =>{history.push(`/comments/${parsedId}`)}}>Back to Comments</button>
+            </div>
             <label>New Comment? </label>
             <input
                 type="text"

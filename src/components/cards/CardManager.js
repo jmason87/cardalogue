@@ -54,3 +54,12 @@ export const approveCard = (cardId) => {
         }
     }).then(getCards)
 }
+
+export const deleteCard = (id) => {
+    return fetch (`http://localhost:8000/cards/${id}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    }).then(getCards)
+};

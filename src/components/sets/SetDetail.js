@@ -3,6 +3,7 @@ import { deleteCard, getSets, getSingleSet, searchCards } from "./SetManager"
 import { getCards } from "../cards/CardManager"
 import { useHistory, Link, useParams } from "react-router-dom"
 import { getCollections } from "../collections/CollectionManager"
+import { getCurrentUser } from "../users/UserManager"
 
 
 export const SetDetail = () => {
@@ -10,6 +11,7 @@ export const SetDetail = () => {
     const [cards, setCards] = useState([])
     const [collection, setCollections] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
+    const [currentUser, setCurrentUser] = useState({})
 
     const { setId } = useParams()
     const parsedId = parseInt(setId)
@@ -19,12 +21,12 @@ export const SetDetail = () => {
         getSingleSet(parsedId).then(setSet)
     }, [])
 
-    // useEffect(() => {
-    //     getCards().then(setCards)
-    // }, [])
-
     useEffect(() => {
         getCollections().then(setCollections)
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser().then(setCurrentUser)
     }, [])
 
     useEffect(() => {
@@ -51,7 +53,15 @@ export const SetDetail = () => {
                             card.is_approved
                             ?
                             <ul>
-                                <li>#{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link></li>
+                                <li>
+                                    #{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link>
+                                    {
+                                        currentUser.is_staff
+                                            ? <button onClick={() => {deleteCard(card.id).then(setCards)}}>Delete</button>
+                                            : ""
+
+                                    }
+                                </li>
                             </ul>
                             : ""
                         }

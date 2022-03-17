@@ -29,7 +29,7 @@ export const UserDetail = () => {
                 <li>Name: {user.first_name} {user.last_name}</li>
                 <li>Email: {user.email}</li>
                 <li>Joined on: {user.date_joined}</li>
-                <li>Status: 
+                <li>Privileges: 
                     {
                         user.is_staff
                             ? " Admin"
