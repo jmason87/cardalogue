@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { deleteCard, getSets, getSingleSet } from "./SetManager"
+import { deleteCard, getSets, getSingleSet, searchCards } from "./SetManager"
 import { getCards } from "../cards/CardManager"
 import { useHistory, Link, useParams } from "react-router-dom"
 import { getCollections } from "../collections/CollectionManager"
@@ -9,6 +9,7 @@ export const SetDetail = () => {
     const [set, setSet] = useState({})
     const [cards, setCards] = useState([])
     const [collection, setCollections] = useState([])
+    const [searchTerms, setSearchTerms] = useState("")
 
     const { setId } = useParams()
     const parsedId = parseInt(setId)
@@ -18,23 +19,28 @@ export const SetDetail = () => {
         getSingleSet(parsedId).then(setSet)
     }, [])
 
-    useEffect(() => {
-        getCards().then(setCards)
-    }, [])
+    // useEffect(() => {
+    //     getCards().then(setCards)
+    // }, [])
 
     useEffect(() => {
         getCollections().then(setCollections)
     }, [])
 
-    const addCardToCollection = (evt) => {
-        evt.preventDefault()
-        const cardCollection = {
-            card: "",
+    useEffect(() => {
+        if (searchTerms !== "") {
+            searchCards(searchTerms).then(setCards)
+        } else {
+            getCards().then(setCards)
         }
-    }
+    }, [searchTerms])
 
     return (<>
         <h1>Set Details</h1>
+        <div>
+        <label>Search for Player</label>
+        <input type="text" onKeyUp={(e) => {setSearchTerms(e.target.value)}} />
+        </div>
         <button onClick={() => { history.push(`/cardform/${set.id}`) }}>Add Card To Set</button>
         <button onClick={() => {history.push("/sets")}}>Back to Sets</button>
         {
