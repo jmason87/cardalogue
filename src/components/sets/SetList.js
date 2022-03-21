@@ -31,7 +31,7 @@ export const SetList = () => {
                     <Link to={`/sets/${set.id}`}><p>{set.name}</p></Link>
                     {
                         currentUser.is_staff
-                            ? <button onClick={() => {history.push(`/setedit/${set.id}`)}}>Edit</button>
+                            ? <button className="btn-warning" onClick={() => {history.push(`/setedit/${set.id}`)}}>Edit</button>
                             : ""
                     }
                     </>
