@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import { deleteCardCollection, getCardCollections } from "../cardcollection/CardCollectionManager"
 import { getCurrentUser } from "../users/UserManager"
 import { getSingleCollection } from "./CollectionManager"
+import "./collection.css"
 
 
 export const CollectionDetail = () => {
@@ -13,7 +14,7 @@ export const CollectionDetail = () => {
     const { collectionId } = useParams()
     const parsedId = parseInt(collectionId)
     const history = useHistory()
-    
+
     // this useEffect is watch for state change in the cardsInCollection array, every time that state changes, this useEffect will run
     useEffect(() => {
         getSingleCollection(parsedId).then(setCollection)
@@ -40,46 +41,52 @@ export const CollectionDetail = () => {
     }
 
     return <>
-        <h1>{collection.name}</h1>
-        <h3>Owner: {collection.user?.username}</h3>
-        <div>
-            <button onClick={() => {history.push(`/comments/${parsedId}`)}}>ViewCommetns</button>
-            <button onClick={() => {history.push('/allcollections')}}>Back to All Collections</button>
+        <div className="container text-center mt-4">
+            <h1>{collection.name}</h1>
+            <h3>Owner: {collection.user?.username}</h3>
+            <div>
+                <button className="btn btn-md btn-primary m-4" onClick={() => { history.push(`/comments/${parsedId}`) }}>ViewCommetns</button>
+                <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/allcollections') }}>Back to All Collections</button>
+                {
+                    currentUser.id === collection.user?.id
+                        ? <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/sets') }}>Add Cards</button>
+                        : ""
+                }
+            </div>
         </div>
-        <div>
-            {
-                currentUser.id === collection.user?.id
-                    ? <button onClick={() => {history.push('/sets')}}>Add Cards</button>
-                    : ""
-            }
-        </div>
-        <div>
-            {   // mapping over the card array in the collection object
-                collection.card?.map((card) => {
-                    return <>
-                    <img src={`http://localhost:8000${card.image}`} className="image is-128x128 mr-3"></img>                    <p>{card.first_name} {card.last_name}</p>
-                    <p>Card #{card.card_number}</p>
-                    <p>Category: {card.card_category.label}</p>
-                    <p>Set: {card.set?.name}</p>
-                    <ul>Attributes: 
-                    { // mapping over the tags array in each card object
-                        card.tag.map((cardtags) => {
-                            return <li key={`cardtags--${cardtags.id}`}>{cardtags.label}</li>
-                        })
-                    }
-                    </ul>
-                    <div>
-                    {
-                        currentUser.id === collection.user?.id
-                            ? <button 
-                              //we invoke the function onClick and pass in the card.id as the argument for cardId parameter we set above  
-                              onClick={() => {foundCardToRemove(card.id)}}>Remove Card</button>
-                            : ""
-                    }    
-                    </div>
-                    </>
-                })
-            }
+        <div className="container mt-4">
+            <div className="col-md-2 text-center">
+                {   // mapping over the card array in the collection object
+                    collection.card?.map((card) => {
+                        return <>
+                            <div className="col">
+                                <div className="card bg-light">
+                                    <img className="card-img" src={`http://localhost:8000${card.image}`}></img>                    <p>{card.first_name} {card.last_name}</p>
+                                    <p>Card #{card.card_number}</p>
+                                    <p>Category: {card.card_category.label}</p>
+                                    <p>Set: {card.set?.name}</p>
+                                    <ul>Attributes:
+                                        { // mapping over the tags array in each card object
+                                            card.tag.map((cardtags) => {
+                                                return <li key={`cardtags--${cardtags.id}`}>{cardtags.label}</li>
+                                            })
+                                        }
+                                    </ul>
+                                    <div>
+                                        {
+                                            currentUser.id === collection.user?.id
+                                                ? <button className="btn btn-sm btn-danger mb-4"
+                                                    //we invoke the function onClick and pass in the card.id as the argument for cardId parameter we set above  
+                                                    onClick={() => { foundCardToRemove(card.id) }}>Remove Card</button>
+                                                : ""
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    })
+                }
+            </div>
         </div>
     </>
 }

@@ -12,64 +12,60 @@ export const NavBar = (props) => {
     }, [])
 
     return (
-        <nav className="navbar navbar-expand-sm bg-light">
+        <nav className="navbar fixed-top navbar-expand-sm bg-light">
             <div className="container-fluid">
                 <ul className="navbar-nav">
-                    {/* Links for all users */}
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/collections">My Collections</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/allcollections">All Collections</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/sets">Sets</Link>
-                    </li>
-                    {/* links for only admins */}
-                    {
-                        currentUser.is_staff
-                            ? <li className="nav-item"><Link className="nav-link" to="/approval">Cards For Approval</Link></li>
-                            : ""
-                    }
-                    {
-                        currentUser.is_staff
-                            ? <li className="nav-item"><Link className="nav-link" to="/tags">Tag Management</Link></li>
-                            : ""
-                    }
-                    {
-                        currentUser.is_staff
-                            ? <li className="nav-item"><Link className="nav-link" to="/categories">Category Management</Link></li>
-                            : ""
-                    }
-                    {
-                        currentUser.is_staff
-                            ? <li className="nav-item"><Link className="nav-link" to="/users">User Management</Link></li>
-                            : ""
-                    }
-                {/* logout link */}
-                {
-                    (localStorage.getItem("lu_token") !== null) ?
+                    <div className="navbar-nav">
+                        {/* Links for all users */}
                         <li className="nav-item">
-                            <button className="nav-link fakeLink"
-                                onClick={() => {
-                                    localStorage.removeItem("lu_token")
-                                    history.push({ pathname: "/" })
-                                }}
-                            >Logout {currentUser.username}</button>
-                        </li> :
-                        <>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">Register</Link>
-                            </li>
-                        </>
-                }
-                                </ul>
+                            <Link className="nav-link" to="/">Home</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/collections">My Collections</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/allcollections">All Collections</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/sets">Sets</Link>
+                        </li>
+                        {/* links for only admins */}
+                        {
+                            currentUser.is_staff
+                                ? <li className="nav-item"><Link className="nav-link" to="/approval">Cards For Approval</Link></li>
+                                : ""
+                        }
+                        {
+                            currentUser.is_staff
+                                ? <li className="nav-item"><Link className="nav-link" to="/tags">Tag Management</Link></li>
+                                : ""
+                        }
+                        {
+                            currentUser.is_staff
+                                ? <li className="nav-item"><Link className="nav-link" to="/categories">Category Management</Link></li>
+                                : ""
+                        }
+                        {
+                            currentUser.is_staff
+                                ? <li className="nav-item"><Link className="nav-link" to="/users">User Management</Link></li>
+                                : ""
+                        }
+                        {/* logout link */}
+                    </div>
+                    <div className="navbar-nav ms-auto">
+                        {
+                            localStorage.getItem("lu_token") !== null
+                                ? <button className="btn btn-outline-dark"
+                                    onClick={() => {
+                                        localStorage.removeItem("lu_token")
+                                        history.push({ pathname: "/" })
+                                    }}>
+                                    Logout {currentUser.username}
+                                </button>
+                                : ""
+                        }
+                    </div>
+                </ul>
             </div>
         </nav >
     )
