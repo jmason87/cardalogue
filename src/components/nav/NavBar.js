@@ -12,7 +12,7 @@ export const NavBar = (props) => {
     }, [])
 
     return (
-        <nav className="navbar fixed-top navbar-expand-sm bg-light">
+        <nav className="navbar navbar-expand-sm bg-light">
             <div className="container-fluid">
                 <ul className="navbar-nav">
                     <div className="navbar-nav">

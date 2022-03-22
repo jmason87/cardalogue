@@ -45,7 +45,7 @@ export const CollectionDetail = () => {
             <h1>{collection.name}</h1>
             <h3>Owner: {collection.user?.username}</h3>
             <div>
-                <button className="btn btn-md btn-primary m-4" onClick={() => { history.push(`/comments/${parsedId}`) }}>ViewCommetns</button>
+                <button className="btn btn-md btn-primary m-4" onClick={() => { history.push(`/comments/${parsedId}`) }}>View Comments</button>
                 <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/allcollections') }}>Back to All Collections</button>
                 {
                     currentUser.id === collection.user?.id
@@ -55,23 +55,24 @@ export const CollectionDetail = () => {
             </div>
         </div>
         <div className="container mt-4">
-            <div className="col-md-2 text-center">
+            <div className="row row-cols-4 mt-4">
                 {   // mapping over the card array in the collection object
                     collection.card?.map((card) => {
                         return <>
                             <div className="col">
-                                <div className="card bg-light">
-                                    <img className="card-img" src={`http://localhost:8000${card.image}`}></img>                    <p>{card.first_name} {card.last_name}</p>
+                                <div className="card bg-light text-center">
+                                    <img className="card-img" src={`http://localhost:8000${card.image}`}></img>                    
+                                    <h5>{card.first_name} {card.last_name}</h5>
                                     <p>Card #{card.card_number}</p>
                                     <p>Category: {card.card_category.label}</p>
                                     <p>Set: {card.set?.name}</p>
-                                    <ul>Attributes:
+                                    <p>Attributes:
                                         { // mapping over the tags array in each card object
                                             card.tag.map((cardtags) => {
-                                                return <li key={`cardtags--${cardtags.id}`}>{cardtags.label}</li>
+                                                return <p key={`cardtags--${cardtags.id}`}>{cardtags.label}</p>
                                             })
                                         }
-                                    </ul>
+                                    </p>
                                     <div>
                                         {
                                             currentUser.id === collection.user?.id

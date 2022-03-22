@@ -24,27 +24,29 @@ export const CommentEdit = () => {
             collection: comment.collection?.id
         }
         updateCollectionComments(submitEdit, parsedCommentId)
-            .then(() => {history.push(`/comments/${comment.collection?.id}`)})
+            .then(() => { history.push(`/comments/${comment.collection?.id}`) })
     }
     console.log(comment)
     return (
         <>
-            <h1>Edit Comment</h1>
-            <div>
-                <textarea
-                    className="textarea"
-                    defaultValue={comment.content}
-                    onChange={
-                        (evt) => {
-                            let copy = { ...content }
-                            copy = evt.target.value
-                            setNewContent(copy)
-                        }}
-                    required autoFocus
-                ></textarea>
-            </div>
-            <div>
-                <button onClick={submitEditedComment}>Save</button>
+            <div className="container text-center mt-4">
+                <h1>Edit Comment</h1>
+                <div>
+                    <textarea
+                        className="mt-4"
+                        defaultValue={comment.content}
+                        onChange={
+                            (evt) => {
+                                let copy = { ...content }
+                                copy = evt.target.value
+                                setNewContent(copy)
+                            }}
+                        required autoFocus
+                    ></textarea>
+                </div>
+                <div>
+                    <button className="btn btn-lg btn-primary m-4" onClick={submitEditedComment}>Save</button>
+                </div>
             </div>
         </>
     )
