@@ -46,7 +46,11 @@ export const CollectionDetail = () => {
             <h3>Owner: {collection.user?.username}</h3>
             <div>
                 <button className="btn btn-md btn-primary m-4" onClick={() => { history.push(`/comments/${parsedId}`) }}>View Comments</button>
-                <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/allcollections') }}>Back to All Collections</button>
+                {
+                    collection.user?.id === currentUser.id
+                        ? <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/collections') }}>Back to My Collections</button>
+                        : <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/allcollections') }}>Back to All Collections</button>
+                }
                 {
                     currentUser.id === collection.user?.id
                         ? <button className="btn btn-md btn-primary m-4" onClick={() => { history.push('/sets') }}>Add Cards</button>

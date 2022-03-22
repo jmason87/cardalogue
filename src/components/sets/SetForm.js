@@ -62,7 +62,7 @@ export const SetForm = () => {
                     </div>
                     <div>
                         <button className="btn btn-lg btn-primary m-4" onClick={createNewSet}>Save Set</button>
-                        <button  className="btn btn-lg btn-danger m-4"onClick={() => { history.push('/sets') }}>Cancel</button>
+                        <button className="btn btn-lg btn-danger m-4" onClick={() => { history.push('/sets') }}>Cancel</button>
                     </div>
                 </div>
             </div>

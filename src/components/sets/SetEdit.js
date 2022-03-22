@@ -10,7 +10,7 @@ export const SetEdit = () => {
         manufacturer: "",
         year: ""
     })
-    
+
     const { setId } = useParams()
     const parsedId = setId
     const history = useHistory()
@@ -40,46 +40,51 @@ export const SetEdit = () => {
 
     return (
         <>
-            <h1>Set Edit Form</h1>
-            <form>
-                <div>
-                    <label>Name: </label>
-                    <input
-                        type="text"
-                        value={singleSet.name}
-                        onChange={(evt) => {
-                            const copy = { ...singleSet }
-                            copy.name = evt.target.value
-                            setSingleSet(copy)
-                        }} />
+            <div className="container text-center mt-4">
+                <h1>Set Edit Form</h1>
+                <div className="card text-center bg-light">
+                    <div className="input-group mb-3 px-4 mt-4">
+                        <label className="input-group-text">Name: </label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            value={singleSet.name}
+                            onChange={(evt) => {
+                                const copy = { ...singleSet }
+                                copy.name = evt.target.value
+                                setSingleSet(copy)
+                            }} />
+                    </div>
+                    <div className="input-group mb-3 px-4">
+                        <label className="input-group-text">Manufacturer: </label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            value={singleSet.manufacturer}
+                            onChange={(evt) => {
+                                const copy = { ...singleSet }
+                                copy.manufacturer = evt.target.value
+                                setSingleSet(copy)
+                            }} />
+                    </div>
+                    <div className="input-group mb-3 px-4">
+                        <label className="input-group-text">Year: </label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            defaultValue={singleSet.year}
+                            onChange={(evt) => {
+                                const copy = { ...singleSet }
+                                copy.year = evt.target.value
+                                setSingleSet(copy)
+                            }} />
+                    </div>
+                    <div>
+                        <button className="btn btn-lg btn-primary m-4" onClick={saveEditedSet}>Save Set</button>
+                        <button className="btn btn-lg btn-danger m-4" onClick={() => { history.push("/sets") }}>Cancel</button>
+                    </div>
                 </div>
-                <div>
-                    <label>Manufacturer: </label>
-                    <input
-                        type="text"
-                        value={singleSet.manufacturer}
-                        onChange={(evt) => {
-                            const copy = { ...singleSet }
-                            copy.manufacturer = evt.target.value
-                            setSingleSet(copy)
-                        }} />
-                </div>
-                <div>
-                    <label>Year: </label>
-                    <input
-                        type="text"
-                        defaultValue={singleSet.year}
-                        onChange={(evt) => {
-                            const copy = { ...singleSet }
-                            copy.year = evt.target.value
-                            setSingleSet(copy)
-                        }} />
-                </div>
-                <div>
-                    <button onClick={saveEditedSet}>Save Set</button>
-                    <button onClick={() => { history.push("/sets") }}>Cancel</button>
-                </div>
-            </form>
+            </div>
 
         </>
     )

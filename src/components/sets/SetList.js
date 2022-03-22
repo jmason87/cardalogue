@@ -34,7 +34,7 @@ export const SetList = () => {
                         sets.map((set) => {
                             return <>
                                 <div className="col">
-                                    <div className="card text-center mt-4">
+                                    <div className="card text-center bg-light mt-4">
                                         <Link className="mt-4"to={`/sets/${set.id}`}><p>{set.name}</p></Link>
                                         {
                                             currentUser.is_staff

@@ -32,7 +32,7 @@ export const CollectionList = () => {
                                 {
                                     currentUser.id === c.user.id
                                         ? <div className="col mt-4">
-                                            <div className="card text-center">
+                                            <div className="card text-center bg-light">
                                                 <div className="card-body">
                                                     <h1 className="card-title" key={`c--${c.id}`}>{c.name}</h1>
                                                     <button className="btn btn-sm btn-primary m-4" onClick={() => { history.push(`/collections/${c.id}`) }}>View</button>

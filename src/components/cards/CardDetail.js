@@ -44,10 +44,10 @@ export const CardDetail = () => {
     }, [])
 
     // checks to see if the card selected is already in the card array of that collection
-    const found = 
+    const found =
         collection.card?.find(c => c.id === parsedId)
-    
-    
+
+
     const addCardToCollection = (e) => {
         e.preventDefault()
         // this is the object being sent to the cardcollection array
@@ -58,55 +58,63 @@ export const CardDetail = () => {
         // if there is nothing in the card array of the collection object OR if nothing is returned from the .find above (found variable)
         if (collection.card?.length === 0 || !found) {
             createCardCollection(newCard).then(history.push('/sets'))
-        // if the .find above does return an object and that id is the same as the card id (id from the URL)
+            // if the .find above does return an object and that id is the same as the card id (id from the URL)
         } else if (found.id === parsedId) {
-            window.alert("Card already exists in collection")}
-            
+            window.alert("Card already exists in collection")
+        }
+
     }
 
     return (
         <>
-            <h1>Detail</h1>
-            <section>
-                <p>{card.first_name} {card.last_name}</p>
-                <p>Card #{card.card_number}</p>
-                <p>Attributes:
-                    {
-                        card.tag?.map((tag) => {
-                            return <>
-                                <span> {tag.label} </span>
-                            </>
-                        })
-                    }
-                </p>
-                <img src={`http://localhost:8000${card.image}`} className="image is-128x128 mr-3"></img>
-                <div>
-                    <select onChange={(evt) => {
-                        let copy = { ...collectionId }
-                        copy = evt.target.value
-                        setCollectionId(copy)
-                    }
-                    }>
-                        <option>Choose Collection</option>
-                        {
-                            collections.map((c) => {
-                                return <>
-                                {
-                                    currentUser.id === c.user?.id    
-                                        ? <option value={c.id}>{c.name}</option>
-                                        : ""
-                                }
-                                </>
-                            })
-                        }
-                    </select>
-                    <button onClick={addCardToCollection}>Add</button>
-                </div>
-                <div>
-                    <button onClick={() => {history.push(`/sets/${card.set?.id}`)}}>Back to Cards</button>
-                </div>
+            <div className="container">
+                <div className="card bg-light mt-4 text-center">
 
-            </section>
+
+                    <div>
+                        <h2>{card.first_name} {card.last_name}</h2>
+                        <p>Card #{card.card_number}</p>
+                        <p>Attributes:
+                            {
+                                card.tag?.map((tag) => {
+                                    return <>
+                                        <span> {tag.label} </span>
+                                    </>
+                                })
+                            }
+                        </p>
+                        <img src={`http://localhost:8000${card.image}`} className="image is-128x128 mr-3"></img>
+                        <div>
+                            <select className="mt-4" onChange={(evt) => {
+                                let copy = { ...collectionId }
+                                copy = evt.target.value
+                                setCollectionId(copy)
+                            }
+                            }>
+                                <option>Choose Collection</option>
+                                {
+                                    collections.map((c) => {
+                                        return <>
+                                            {
+                                                currentUser.id === c.user?.id
+                                                    ? <option value={c.id}>{c.name}</option>
+                                                    : ""
+                                            }
+                                        </>
+                                    })
+                                }
+                            </select>
+                            <div>
+                                <button className="btn btn-sm btn-primary mt-4" onClick={addCardToCollection}>Add</button>
+                            </div>
+                        </div>
+                        <div>
+                            <button className="btn btn-md btn-danger mt-4 mb-4" onClick={() => { history.push(`/sets/${card.set?.id}`) }}>Back to Cards</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

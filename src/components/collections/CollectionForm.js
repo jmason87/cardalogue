@@ -37,7 +37,7 @@ export const CollectionForm = () => {
             <div className="card text-center bg-light">
                 <h1 className="mt-4">New Collection Form</h1>
                 <div className="input-group mb-3 px-4 pt-4">
-                    <span className="input-group-text">Name:</span>
+                    <label className="input-group-text">Name:</label>
                     <input
                         className="form-control"
                         type="text"

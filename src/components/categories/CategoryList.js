@@ -14,21 +14,27 @@ export const CategoryList = () => {
 
     return (
         <>
-            <h1>Category List</h1>
-            <button onClick={() => {history.push("/categoryform")}}>Add a Category</button>
-            {
-                categories.map((cat) => {
-                    return <>
-                        <ul>
-                            <li>
-                                {cat.label} 
-                                <button onClick={() => {history.push(`/catedit/${cat.id}`)}}>Edit</button>
-                                <button onClick={() => {deleteCategory(cat.id).then(setCategories)}}>Delete</button>
-                            </li>
-                        </ul>
-                    </>
-                })
-            }
+            <div className="container text-center mt-4">
+                <h1>Category List</h1>
+                <button className="btn btn-md btn-primary" onClick={() => { history.push("/categoryform") }}>Add a Category</button>
+            </div>
+            <div className="container text-center mt-4">
+                <div className="card bg-light m-4 p-4">
+                    {
+                        categories.map((cat) => {
+                            return <>
+                                <div>
+                                    <div>
+                                        {cat.label}
+                                        <button className="btn btn-sm btn-warning m-1" onClick={() => { history.push(`/catedit/${cat.id}`) }}>Edit</button>
+                                        <button className="btn btn-sm btn-danger m-1" onClick={() => { deleteCategory(cat.id).then(setCategories) }}>Delete</button>
+                                    </div>
+                                </div>
+                            </>
+                        })
+                    }
+                </div>
+            </div>
         </>
     )
 }
