@@ -43,8 +43,8 @@ export const Login = () => {
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
-                <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Gamer Rater</h1>
+                <form className="container text-center mt-4" onSubmit={handleLogin}>
+                    <h1>Cardalogue</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputUsername"> Username address </label>
@@ -57,12 +57,12 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="btn btn-1 btn-primary m-4 icon-send" type="submit">Sign In</button>
                     </fieldset>
+                    <section className="link--register">
+                        <Link to="/register">Not a member yet?</Link>
+                    </section>
                 </form>
-            </section>
-            <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
             </section>
         </main>
     )

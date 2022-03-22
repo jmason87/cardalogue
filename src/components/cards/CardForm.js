@@ -48,7 +48,7 @@ export const CardForm = () => {
             set: newCard.set,
             tag: Array.from(newCard.tag)
         }
-        createCard(cardForSubmit).then(() => {history.push("/sets")})
+        createCard(cardForSubmit).then(() => { history.push("/sets") })
     }
 
     const getBase64 = (file, callback) => {
@@ -56,22 +56,23 @@ export const CardForm = () => {
         reader.addEventListener('load', () => callback(reader.result));
         reader.readAsDataURL(file);
     }
-    
+
     const createGameImageString = (event) => {
         getBase64(event.target.files[0], (base64ImageString) => {
             console.log("Base64 of file is", base64ImageString);
-    
+
             // Update a component state variable to the value of base64ImageString
             setString(base64ImageString)
         });
     }
     return <>
-        <h1>Add Card Form</h1>
-        <form>
-            <section>
-                <div>
-                    <label>First Name: </label>
+        <div className="container mt-4 text-center">
+            <h1>Add Card Form</h1>
+            <div className="card text-center bg-light">
+                <div className="input-group mb-3 px-4 mt-4">
+                    <label className="input-group-text">First Name: </label>
                     <input
+                        className="form-control"
                         type="text"
                         onChange={(evt) => {
                             const copy = { ...newCard }
@@ -80,9 +81,10 @@ export const CardForm = () => {
                         }}
                     />
                 </div>
-                <div>
-                    <label>Last Name: </label>
+                <div className="input-group mb-3 px-4">
+                    <label className="input-group-text">Last Name: </label>
                     <input
+                        className="form-control"
                         type="text"
                         onChange={(evt) => {
                             const copy = { ...newCard }
@@ -91,9 +93,10 @@ export const CardForm = () => {
                         }}
                     />
                 </div>
-                <div>
-                    <label>Card Number: </label>
+                <div className="input-group mb-3 px-4">
+                    <label className="input-group-text">Card Number: </label>
                     <input
+                        className="form-control"
                         type="text"
                         onChange={(evt) => {
                             const copy = { ...newCard }
@@ -102,12 +105,13 @@ export const CardForm = () => {
                         }}
                     />
                 </div>
-                <div>
-                    <label>Card Number: </label>
-                    <select onChange={(evt) => {
-                        const copy = { ...newCard }
-                        copy.cardCategory = evt.target.value
-                        setNewCard(copy)
+                <div className="input-group mb-3 px-4">
+                    <label className="input-group-text">Card Number: </label>
+                    <select className=""
+                        onChange={(evt) => {
+                            const copy = { ...newCard }
+                            copy.cardCategory = evt.target.value
+                            setNewCard(copy)
                     }}>
                         <option>Category</option>
                         {
@@ -117,7 +121,7 @@ export const CardForm = () => {
                         }
                     </select>
                 </div>
-                <div>
+                <div className="input-group mb-3 px-4">
                     {
                         tags.map((tag) => {
                             return <p>
@@ -131,23 +135,23 @@ export const CardForm = () => {
                                             ? copy.tag.delete(parseInt(evt.target.value))
                                             : copy.tag.add(parseInt(evt.target.value))
                                         setNewCard(copy)
-                                    }} />{tag.label}
+                                    }} />{tag.label} 
                             </p>
                         })
                     }
                 </div>
-                <div>
+                <div className="input-group mb-3 px-4">
                     <input type="file" id="card_image" onChange={createGameImageString} />
                     {/* <input type="hidden" name="card_id" value={card.id} /> */}
                     {/* <button onClick={() => {
-                        // Upload the stringified image that is stored in state
-                    }}>Upload</button> */}
+                    // Upload the stringified image that is stored in state
+                }}>Upload</button> */}
                 </div>
                 <div>
-                    <button onClick={submitCardForApproval}>Submit Card</button>
-                    <button onClick={() => {history.push(`/sets/${setId}`)}}>Back</button>
+                    <button className="btn btn-lg btn-primary m-4" onClick={submitCardForApproval}>Submit Card</button>
+                    <button className="btn btn-lg btn-danger m-4" onClick={() => { history.push(`/sets/${setId}`) }}>Back</button>
                 </div>
-            </section>
-        </form>
+            </div>
+        </div>
     </>
 }

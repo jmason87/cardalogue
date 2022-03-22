@@ -38,32 +38,34 @@ export const SetDetail = () => {
     }, [searchTerms])
 
     return (<>
-        <h1>Set Details</h1>
-        <div>
-        <label>Search for Player</label>
-        <input type="text" onKeyUp={(e) => {setSearchTerms(e.target.value)}} />
+        <div className="container-md text-center mt-4">
+            <h1>Set Details</h1>
+            <button className="btn btn-lg btn-primary mx-4 mt-4" onClick={() => { history.push(`/cardform/${set.id}`) }}>Add Card To Set</button>
+            <button className="btn btn-lg btn-primary mx-4 mt-4" onClick={() => { history.push("/sets") }}>Back to Sets</button>
+            <div>
+                {/* <label className="input-group-text">Search for Player</label> */}
+                <input className="mt-4 form-control"  placeholder="Search For Player" type="text" onKeyUp={(e) => { setSearchTerms(e.target.value) }} />
+            </div>
         </div>
-        <button onClick={() => { history.push(`/cardform/${set.id}`) }}>Add Card To Set</button>
-        <button onClick={() => {history.push("/sets")}}>Back to Sets</button>
         {
             cards.map((card) => {
                 if (card.set.id === parsedId) {
                     return <>
                         {
                             card.is_approved
-                            ?
-                            <ul>
-                                <li>
-                                    #{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link>
-                                    {
-                                        currentUser.is_staff
-                                            ? <button onClick={() => {deleteCard(card.id).then(setCards)}}>Delete</button>
-                                            : ""
+                                ?
+                                <ul className="list-group list-group-flush text-center mt-4">
+                                    <li className="list-group-item">
+                                        #{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link>
+                                        {
+                                            currentUser.is_staff
+                                                ? <button className="btn btn-sm btn-primary" onClick={() => { deleteCard(card.id).then(setCards) }}>Delete</button>
+                                                : ""
 
-                                    }
-                                </li>
-                            </ul>
-                            : ""
+                                        }
+                                    </li>
+                                </ul>
+                                : ""
                         }
                     </>
                 }

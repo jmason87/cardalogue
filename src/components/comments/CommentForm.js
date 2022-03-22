@@ -36,20 +36,30 @@ export const CommentForm = () => {
 
     return (
         <>
-            <h1>Comment Form</h1>
-            <div>
-            <button onClick={() =>{history.push(`/comments/${parsedId}`)}}>Back to Comments</button>
+            <div className="container text-center">
+                <h1 className="mt-4">Comment Form</h1>
+                <div>
+                    <button className="btn btn-md btn-primary mt-2" onClick={() => { history.push(`/comments/${parsedId}`) }}>Back to Comments</button>
+                </div>
+                <div className="card text-center bg-light mt-4">
+                    <div className="input-group mb-3 px-4 mt-4">
+
+                        <label className="input-group-text">New Comment? </label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="type comment here"
+                            onChange={(e) => {
+                                const copy = { ...comment }
+                                copy.content = e.target.value
+                                setComment(copy)
+                            }} />
+                    </div>
+                    <div>
+                        <button className="btn btn-sm btn-primary m-4" onClick={submitComment}>Submit Comment</button>
+                    </div>
+                </div>
             </div>
-            <label>New Comment? </label>
-            <input
-                type="text"
-                placeholder="type comment here"
-                onChange={(e) => {
-                    const copy = { ...comment }
-                    copy.content = e.target.value
-                    setComment(copy)
-                }} />
-            <button onClick={submitComment}>Submit Comment</button>
         </>
     )
 }

@@ -29,29 +29,31 @@ export const CollectionForm = () => {
             user: parseInt(currentUser.id)
         }
         //this is being imported from the collections manager
-        createCollection(newCollection).then(() => {history.push('/collections')})
+        createCollection(newCollection).then(() => { history.push('/collections') })
     }
 
     return <>
-        <h1>New Collection Form</h1>
-        <form>
-            <section>
-                <label>Name:</label>
-                <input
-                    type="text"
-                    onChange={
-                        (evt) => {
-                            const copy = {...collection}
-                            copy.name = evt.target.value
-                            setCollection(copy)
-                        }
-                    }>
-                </input>
-                <div>
-                    <button onClick={submitNewCollection}>Submit</button>
+        <div className="container mt-4">
+            <div className="card text-center bg-light">
+                <h1 className="mt-4">New Collection Form</h1>
+                <div className="input-group mb-3 px-4 pt-4">
+                    <label className="input-group-text">Name:</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        onChange={
+                            (evt) => {
+                                const copy = { ...collection }
+                                copy.name = evt.target.value
+                                setCollection(copy)
+                            }
+                        }>
+                    </input>
                 </div>
-            </section>
-        </form>
-
+                <div>
+                    <button className="btn btn-lg btn-primary m-4" onClick={submitNewCollection}>Submit</button>
+                </div>
+            </div>
+        </div>
     </>
 }

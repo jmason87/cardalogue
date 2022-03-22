@@ -11,16 +11,18 @@ export const UserList = () => {
 
     return (
         <>
-            <h1>User List</h1>
-            {
-                users.map((user) => {
-                    return <>
-                        <ul>
-                            <li><Link to={`/user/${user.id}`}>{user.username}</Link></li>
-                        </ul>
-                    </>
-                })
-            }
+            <div className="container text-center mt-4">
+                <h1>User List</h1>
+                {
+                    users.map((user) => {
+                        return <>
+                            <div>
+                                <div><Link to={`/user/${user.id}`}>{user.username}</Link></div>
+                            </div>
+                        </>
+                    })
+                }
+            </div>
         </>
     )
 }
