@@ -1,5 +1,5 @@
 export const getCollectionComments = () => {
-    return fetch("http://localhost:8000/collectioncomments", {
+    return fetch("https://cardalogue-server.herokuapp.com/collectioncomments", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getCollectionComments = () => {
 }
 
 export const getSingleCollectionComments = (id) => {
-    return fetch(`http://localhost:8000/collectioncomments/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/collectioncomments/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -26,13 +26,13 @@ export const createCollectionComments = (newComment) => {
         },
         body: JSON.stringify(newComment)
     }
-    return fetch(`http://localhost:8000/collectioncomments`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/collectioncomments`, fetchOptions)
         .then(getCollectionComments)
 
 }
 
 export const deleteCollectionComments = (id) => {
-    return fetch (`http://localhost:8000/collectioncomments/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/collectioncomments/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
@@ -41,7 +41,7 @@ export const deleteCollectionComments = (id) => {
 };
 
 export const updateCollectionComments = (comment, id) => {
-    return fetch(`http://localhost:8000/collectioncomments/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/collectioncomments/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

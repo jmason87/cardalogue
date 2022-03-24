@@ -27,7 +27,7 @@ export const TagEdit = () => {
         <>
             <div className="container text-center mt-4">
                 <h1>Tag Form</h1>
-                <div className="input-group mb-3 px-4 pt-4">
+                <div className="input-group mx-auto w-50 mb-3 px-4 pt-4">
                     <label className="input-group-text">Tag Label: </label>
                     <input
                         className="form-control"

@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
-// import "./Auth.css"
+import "./auth.css"
 
 
 export const Login = () => {
@@ -12,7 +12,7 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("http://127.0.0.1:8000/login", {
+        return fetch("https://cardalogue-server.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,12 +43,12 @@ export const Login = () => {
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
-                <form className="container text-center mt-4" onSubmit={handleLogin}>
+                <form className="container--login text-center mt-4" onSubmit={handleLogin}>
                     <h1>Cardalogue</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
-                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
+                        <label htmlFor="inputUsername"> Username </label>
+                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>

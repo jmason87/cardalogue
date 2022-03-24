@@ -42,9 +42,9 @@ export const SetDetail = () => {
             <h1>Set Details</h1>
             <button className="btn btn-lg btn-primary mx-4 mt-4" onClick={() => { history.push(`/cardform/${set.id}`) }}>Add Card To Set</button>
             <button className="btn btn-lg btn-primary mx-4 mt-4" onClick={() => { history.push("/sets") }}>Back to Sets</button>
-            <div>
+            <div className="input-sm">
                 {/* <label className="input-group-text">Search for Player</label> */}
-                <input className="mt-4 form-control"  placeholder="Search For Player" type="text" onKeyUp={(e) => { setSearchTerms(e.target.value) }} />
+                <input className="mt-4 form-control w-50 mx-auto"  placeholder="Search For Player" type="text" onKeyUp={(e) => { setSearchTerms(e.target.value) }} />
             </div>
         </div>
         {
@@ -59,7 +59,7 @@ export const SetDetail = () => {
                                         #{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link>
                                         {
                                             currentUser.is_staff
-                                                ? <button className="btn btn-sm btn-primary" onClick={() => { deleteCard(card.id).then(setCards) }}>Delete</button>
+                                                ? <button className="btn btn-sm btn-danger" onClick={() => { deleteCard(card.id).then(setCards) }}>Delete</button>
                                                 : ""
 
                                         }

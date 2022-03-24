@@ -1,13 +1,13 @@
 
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
-// import "./Auth.css"
+import "./auth.css"
 
 export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
-    const bio = useRef()
+    const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -21,11 +21,11 @@ export const Register = () => {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
-                "bio": bio.current.value,
+                "email": email.current.value,
                 "password": password.current.value
             }
 
-            return fetch("http://127.0.0.1:8000/register", {
+            return fetch("https://cardalogue-server.herokuapp.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const Register = () => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main className="reg" style={{ textAlign: "center" }}>
 
             <dialog className="dialog dialog--password" ref={passwordDialog}>
                 <div>Passwords do not match</div>
@@ -77,16 +77,16 @@ export const Register = () => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Bio </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
+                    <label htmlFor="verifyPassword"> Email </label>
+                    <input ref={email} name="email" className="form-control" placeholder="Email" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <button className="btn btn-1 btn-primary mt-2 icon-send" type="submit">Register</button>
                 </fieldset>
             </form>
-            <section className="link--register">
+            <section className="link--register mt-2">
                 Already registered? <Link to="/login">Login</Link>
             </section>
         </main>

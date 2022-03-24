@@ -26,7 +26,7 @@ export const UserDetail = () => {
 
             <div className="container text-center mt-4">
                 <h2>{user.username}</h2>
-                <div className="card bg-light">
+                <div className="card bg-light w-50 mx-auto">
                     <div>Name: {user.first_name} {user.last_name}</div>
                     <div>Email: {user.email}</div>
                     <div>Joined on: {user.date_joined}</div>

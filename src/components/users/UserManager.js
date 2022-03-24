@@ -1,5 +1,5 @@
 export const getCurrentUser = () => {
-    return fetch(`http://localhost:8000/users/current`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/users/current`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getCurrentUser = () => {
 }
 
 export const getUsers = () => {
-    return fetch(`http://localhost:8000/users`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/users`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -17,7 +17,7 @@ export const getUsers = () => {
 }
 
 export const getUser = (id) => {
-    return fetch(`http://localhost:8000/users/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/users/${id}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -33,7 +33,7 @@ export const makeAdmin = (id) => {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
     }
-    return fetch(`http://localhost:8000/users/${id}/admin`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/users/${id}/admin`, fetchOptions)
 }
 
 export const makeCollector = (id) => {
@@ -44,5 +44,5 @@ export const makeCollector = (id) => {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
     }
-    return fetch(`http://localhost:8000/users/${id}/collector`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/users/${id}/collector`, fetchOptions)
 }

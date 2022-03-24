@@ -1,5 +1,5 @@
 export const getTags = () => {
-    return fetch("http://localhost:8000/tags", {
+    return fetch("https://cardalogue-server.herokuapp.com/tags", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getTags = () => {
 }
 
 export const getTag = (id) => {
-    return fetch(`http://localhost:8000/tags/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/tags/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -26,13 +26,13 @@ export const createTag = (newTag) => {
         },
         body: JSON.stringify(newTag)
     }
-    return fetch(`http://localhost:8000/tags`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/tags`, fetchOptions)
         .then(getTags)
 
 }
 
 export const updateTag = (tag, id) => {
-    return fetch(`http://localhost:8000/tags/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/tags/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const updateTag = (tag, id) => {
 }
 
 export const deleteTag = (id) => {
-    return fetch (`http://localhost:8000/tags/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/tags/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`

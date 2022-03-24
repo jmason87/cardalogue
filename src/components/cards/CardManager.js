@@ -1,5 +1,5 @@
 export const getCards = () => {
-    return fetch("http://localhost:8000/cards", {
+    return fetch("https://cardalogue-server.herokuapp.com/cards", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getCards = () => {
 }
 
 export const getSingleCard = (id) => {
-    return fetch(`http://localhost:8000/cards/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/cards/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -26,7 +26,7 @@ export const createCard = (newCard) => {
         },
         body: JSON.stringify(newCard)
     }
-    return fetch(`http://localhost:8000/cards`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/cards`, fetchOptions)
         .then(getCards)
 
 }
@@ -41,12 +41,12 @@ export const createCardCollection = (newCard) => {
         },
         body: JSON.stringify(newCard)
     }
-    return fetch(`http://localhost:8000/cardcollections`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/cardcollections`, fetchOptions)
 
 }
 
 export const approveCard = (cardId) => {
-    return fetch(`http://localhost:8000/cards/${cardId}/approve`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/cards/${cardId}/approve`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const approveCard = (cardId) => {
 }
 
 export const deleteCard = (id) => {
-    return fetch (`http://localhost:8000/cards/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/cards/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
