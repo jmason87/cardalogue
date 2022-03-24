@@ -59,7 +59,7 @@ export const SetDetail = () => {
                                         #{card.card_number} <Link to={`/carddetail/${card.id}`}>{card.first_name} {card.last_name}</Link>
                                         {
                                             currentUser.is_staff
-                                                ? <button className="btn btn-sm btn-danger" onClick={() => { deleteCard(card.id).then(setCards) }}>Delete</button>
+                                                ? <button className="btn btn-sm btn-danger m-2" onClick={() => { deleteCard(card.id).then(setCards) }}>Delete</button>
                                                 : ""
 
                                         }

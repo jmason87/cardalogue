@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getCurrentUser } from "../users/UserManager"
-// import "./NavBar.css"
+// import "./navbar.css"
 
 export const NavBar = (props) => {
     const history = useHistory()
@@ -52,20 +52,23 @@ export const NavBar = (props) => {
                         }
                         {/* logout link */}
                     </div>
-                    <div className="navbar-nav ms-auto">
-                        {
-                            localStorage.getItem("lu_token") !== null
-                                ? <button className="btn btn-outline-dark"
-                                    onClick={() => {
-                                        localStorage.removeItem("lu_token")
-                                        history.push({ pathname: "/" })
-                                    }}>
-                                    Logout {currentUser.username}
-                                </button>
-                                : ""
-                        }
-                    </div>
                 </ul>
+            </div>
+            <div className="navbar-nav ms-auto">
+                <div className="container w-4">
+
+                    {
+                        localStorage.getItem("lu_token") !== null
+                            ? <button className="btn btn-outline-dark "
+                                onClick={() => {
+                                    localStorage.removeItem("lu_token")
+                                    history.push({ pathname: "/" })
+                                }}>
+                                Logout {currentUser.username}
+                            </button>
+                            : ""
+                    }
+                </div>
             </div>
         </nav >
     )

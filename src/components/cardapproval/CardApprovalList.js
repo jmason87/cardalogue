@@ -25,7 +25,7 @@ export const CardApproval = () => {
                                         ? ""
                                         : <div className="col">
                                             <div className="card bg-light text-center p-2">
-                                                <img className="card-img" src={`http://localhost:8000${card.image}`}></img>
+                                                <img className="card-img" src={`https://cardalogue-server.herokuapp.com${card.image}`}></img>
                                                 <h5>{card.first_name} {card.last_name}</h5>
                                                 <p>Card #{card.card_number}</p>
                                                 <p>Category: {card.card_category.label}</p>
