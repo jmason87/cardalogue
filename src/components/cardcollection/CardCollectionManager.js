@@ -1,5 +1,5 @@
 export const getCardCollections = () => {
-    return fetch("http://localhost:8000/cardcollections", {
+    return fetch("https://cardalogue-server.herokuapp.com/cardcollections", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -17,12 +17,12 @@ export const createCardCollection = (newCard) => {
         },
         body: JSON.stringify(newCard)
     }
-    return fetch(`http://localhost:8000/cardcollections`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/cardcollections`, fetchOptions)
 
 }
 
 export const deleteCardCollection = (id) => {
-    return fetch (`http://localhost:8000/cardcollections/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/cardcollections/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`

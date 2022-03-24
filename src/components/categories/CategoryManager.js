@@ -1,5 +1,5 @@
 export const getCategories = () => {
-    return fetch("http://localhost:8000/categories", {
+    return fetch("https://cardalogue-server.herokuapp.com/categories", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getCategories = () => {
 }
 
 export const getCategory = (id) => {
-    return fetch(`http://localhost:8000/categories/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/categories/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -26,13 +26,13 @@ export const createCategory = (newCategory) => {
         },
         body: JSON.stringify(newCategory)
     }
-    return fetch(`http://localhost:8000/categories`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/categories`, fetchOptions)
         .then(getCategories)
 
 }
 
 export const updateCategory = (category, id) => {
-    return fetch(`http://localhost:8000/categories/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/categories/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const updateCategory = (category, id) => {
 }
 
 export const deleteCategory = (id) => {
-    return fetch (`http://localhost:8000/categories/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/categories/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`

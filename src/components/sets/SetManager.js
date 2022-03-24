@@ -2,7 +2,7 @@ import { getCards } from "../cards/CardManager";
 
 
 export const getSets = () => {
-    return fetch("http://localhost:8000/sets", {
+    return fetch("https://cardalogue-server.herokuapp.com/sets", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -11,7 +11,7 @@ export const getSets = () => {
 }
 
 export const getSingleSet = (id) => {
-    return fetch(`http://localhost:8000/sets/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/sets/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -20,7 +20,7 @@ export const getSingleSet = (id) => {
 }
 
 export const deleteCard = (id) => {
-    return fetch (`http://localhost:8000/cards/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/cards/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
@@ -38,12 +38,12 @@ export const createSet = (newSet) => {
         },
         body: JSON.stringify(newSet)
     }
-    return fetch(`http://localhost:8000/sets`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/sets`, fetchOptions)
 
 }
 
 export const updateSet = (set, id) => {
-    return fetch(`http://localhost:8000/sets/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/sets/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export const updateSet = (set, id) => {
 }
 
 export const searchCards = (searchTerm) => {
-    return fetch(`http://localhost:8000/cards?q=${searchTerm}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/cards?q=${searchTerm}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }

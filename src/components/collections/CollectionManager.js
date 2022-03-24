@@ -1,5 +1,5 @@
 export const getCollections = () => {
-    return fetch("http://localhost:8000/collections", {
+    return fetch("https://cardalogue-server.herokuapp.com/collections", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -8,7 +8,7 @@ export const getCollections = () => {
 }
 
 export const getSingleCollection = (id) => {
-    return fetch(`http://localhost:8000/collections/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/collections/${id}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
@@ -26,13 +26,13 @@ export const createCollection = (newCollection) => {
         },
         body: JSON.stringify(newCollection)
     }
-    return fetch(`http://localhost:8000/collections`, fetchOptions)
+    return fetch(`https://cardalogue-server.herokuapp.com/collections`, fetchOptions)
         .then(getCollections)
 
 }
 
 export const deleteCollection = (id) => {
-    return fetch (`http://localhost:8000/collections/${id}`, {
+    return fetch (`https://cardalogue-server.herokuapp.com/collections/${id}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
@@ -41,7 +41,7 @@ export const deleteCollection = (id) => {
 };
 
 export const updateCollection = (collection, id) => {
-    return fetch(`http://localhost:8000/collections/${id}`, {
+    return fetch(`https://cardalogue-server.herokuapp.com/collections/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
